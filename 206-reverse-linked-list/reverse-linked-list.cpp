@@ -11,19 +11,16 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode *temp=head;
-        vector<int>ans;
-        while(temp!=NULL)
+        ListNode *prev=NULL;
+        ListNode *curr=head;
+        while(curr!=NULL)
         {
-            ans.push_back(temp->val);
-            temp=temp->next;
+            ListNode *next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
         }
-        temp=head;
-        for(int i=ans.size()-1;i>=0;i--)
-        {
-            temp->val=ans[i];
-            temp=temp->next;
-        }
-        return head;   
+        return prev;
+        
     }
 };
